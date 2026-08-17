@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ConnectorHive-Crawler</title>
+<meta name="description" content="What ConnectorHive-Crawler collects and how to control it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#FAF7F1; --vellum:#F2EDE3; --sand:#E3DBCA;
+  --evergreen:#1C3A31; --evergreen-deep:#12261F;
+  --amber:#B8862F; --amber-soft:#E8D8B4; --mineral:#7C9083;
+  --ink:#20241F; --ink-soft:#4C544A; --ink-faint:#78806F;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:var(--ivory); color:var(--ink-soft);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-size:.9375rem; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:37rem; margin-inline:auto; padding:2rem clamp(1.25rem,5vw,2rem) 2.5rem}
+
+h1{
+  font-family:"Newsreader",Georgia,serif; font-weight:400; color:var(--evergreen);
+  font-size:clamp(1.75rem,1.35rem + 1.8vw,2.5rem); line-height:1.14;
+  letter-spacing:-.015em; margin:2.25rem 0 1rem; max-width:16ch;
+}
+h1 span{color:var(--mineral)}
+p{margin:0 0 .9rem}
+
+.mark{display:flex; align-items:center; gap:.6rem}
+.mark svg{width:20px;height:22px}
+.mark span{font-family:"Newsreader",serif; font-size:.9375rem; color:var(--evergreen)}
+
+.lede{max-width:47ch; color:var(--ink)}
+
+.ident{
+  background:var(--evergreen-deep); border-radius:9px; padding:1rem 1.05rem;
+  font-family:"IBM Plex Mono",monospace; font-size:.71875rem; line-height:1.75;
+  color:var(--amber-soft); word-break:break-all; margin:1.5rem 0 .75rem;
+}
+.facts{
+  font-family:"IBM Plex Mono",monospace; font-size:.6875rem; line-height:1.9;
+  letter-spacing:.02em; color:var(--ink-faint); margin:0 0 1.75rem;
+}
+.facts b{color:var(--evergreen); font-weight:500}
+
+.lbl{
+  font-family:"IBM Plex Mono",monospace; font-size:.625rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint);
+  margin:0 0 .6rem;
+}
+.blk{padding-top:1.5rem; border-top:1px solid var(--sand); margin-top:1.5rem}
+
+ul{list-style:none; margin:0; padding:0}
+li{position:relative; padding:.22rem 0 .22rem 1.1rem}
+li::before{
+  content:""; position:absolute; left:0; top:.72rem; width:6px; height:7px;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:var(--mineral);
+}
+.no li::before{background:var(--sand)}
+.no li{color:var(--ink-faint)}
+.cols{display:grid; grid-template-columns:1fr 1fr; gap:1.75rem}
+
+pre{
+  margin:0 0 .75rem; background:var(--vellum); border:1px solid var(--sand);
+  border-radius:7px; padding:.75rem .85rem;
+  font-family:"IBM Plex Mono",monospace; font-size:.71875rem; line-height:1.7;
+  color:var(--evergreen); overflow-x:auto;
+}
+pre .dir{color:var(--amber); font-weight:500}
+.hint{font-size:.8125rem; color:var(--ink-faint); margin:0 0 .6rem}
+
+footer{
+  margin-top:1.75rem; padding-top:1.1rem; border-top:1px solid var(--sand);
+  font-size:.75rem; color:var(--ink-faint);
+}
+footer em{font-style:italic}
+footer .id{
+  font-family:"IBM Plex Mono",monospace; font-size:.5625rem; letter-spacing:.07em;
+  margin-top:.75rem; word-break:break-all;
+}
+@media (max-width:560px){ .cols{grid-template-columns:1fr; gap:1.25rem} }
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mark">
+  <svg viewBox="0 0 26 29" aria-hidden="true">
+    <path d="M13 1.2l10.2 5.9v11.8L13 24.8 2.8 18.9V7.1z" fill="none" stroke="#1C3A31" stroke-width="1.5"/>
+    <path d="M13 8.1l4.2 2.4v4.9L13 17.8l-4.2-2.4v-4.9z" fill="#B8862F"/>
+  </svg>
+  <span>connector hive</span>
+</div>
+
+<h1>You found us in your logs. <span>That's the point.</span></h1>
+<p class="lede">ConnectorHive-Crawler collects publicly posted self-storage pricing and availability. We could do that without a name attached. We'd rather you know we're here, and be able to do something about it.</p>
+
+<div class="ident">ConnectorHive-Crawler/1.0 (+https://connectorhive.com/crawler; crawler@connectorhive.com)</div>
+<p class="facts">
+  <b>Never rotates.</b> One rule matches every request.<br>
+  <b>Deployed by a person.</b> No collector starts itself.
+</p>
+
+<div class="cols">
+  <div>
+    <p class="lbl">We collect</p>
+    <ul>
+      <li>Posted prices and promotions</li>
+      <li>Unit sizes, types, availability</li>
+      <li>Location, hours, listed features</li>
+    </ul>
+  </div>
+  <div>
+    <p class="lbl">We never touch</p>
+    <ul class="no">
+      <li>Anything behind a login</li>
+      <li>Personal information</li>
+      <li>Reservations or checkouts</li>
+      <li>CAPTCHAs, limits, or blocks</li>
+    </ul>
+  </div>
+</div>
+
+<div class="blk">
+  <p class="lbl">Set the terms in robots.txt</p>
+  <p class="hint">Read before every run. Changes apply on the next pass.</p>
+<pre>User-agent: ConnectorHive-Crawler
+<span class="dir">Crawl-delay:</span> 30</pre>
+<pre>User-agent: ConnectorHive-Crawler
+<span class="dir">Disallow:</span> /</pre>
+  <p class="hint">Replace <code>/</code> with a path to limit us rather than stop us.</p>
+</div>
+
+<footer>
+  We read only what a visitor sees without an account. Our practices are reviewed by counsel — see <em>hiQ Labs v. LinkedIn</em> (9th Cir. 2022), <em>Meta v. Bright Data</em> (N.D. Cal. 2024), <em>Van Buren v. United States</em> (2021) for context, not clearance.
+  <div class="id">ConnectorHive-Crawler/1.0 &nbsp;·&nbsp; Connector Hive &nbsp;·&nbsp; Updated 17 Aug 2026</div>
+</footer>
+
+</div>
+</body>
+</html>
+
